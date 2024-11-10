@@ -1,5 +1,11 @@
 #!/bin/bash
 
+# 检查是否已存在 auto-hy2-ssL 目录，如果存在则删除
+if [ -d "auto-hy2-ssL" ]; then
+    echo "检测到已存在 auto-hy2-ssL 目录，正在删除..."
+    rm -rf auto-hy2-ssL
+fi
+
 # 安装必要的软件并设置 acme.sh
 sudo apt install -y vim curl socat openssl && mkdir -p /root/hysteria && \
 curl https://get.acme.sh | sh -s email=rebecca554owen@gmail.com && \
