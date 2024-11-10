@@ -13,13 +13,9 @@ sudo apt install -y vim curl socat openssl && \
 curl https://get.acme.sh | sh -s email=rebecca554owen@gmail.com && \
 ~/.acme.sh/acme.sh --set-default-ca --server letsencrypt
 
-# 提示用户输入域名
-read -p "请输入域名: " domain
-
-# 检查用户是否输入了域名，如果未输入则提示并退出
+# 提示用户输入域名（只输入一次）
 if [ -z "$domain" ]; then
-    echo "错误: 域名不能为空。"
-    exit 1
+    read -p "请输入域名: " domain
 fi
 
 # 颁发证书
