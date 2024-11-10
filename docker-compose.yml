@@ -1,0 +1,12 @@
+version: "3.9"
+services:
+  hysteria:
+    image: ghcr.io/cedar2025/hysteria:v1.0.7
+    container_name: hysteria-turbo1
+    restart: always
+    network_mode: "host"
+    volumes:
+      - ./server.yaml:/etc/hysteria/server.yaml         # 这里不用改。
+      - ./example.com.crt:/etc/hysteria/example.com.crt # 这里不用改。
+      - ./example.com.key:/etc/hysteria/example.com.key # 这里不用改。
+    command: ["server", "-c", "/etc/hysteria/server.yaml"]

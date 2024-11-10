@@ -1,0 +1,19 @@
+v2board:
+  apiHost: https://sub01..xyz # xboard面板域名
+  apiKey: Gfw6jy # 通讯密钥
+  nodeID: 4 # Hysteria节点id
+tls:
+  type: tls
+  cert: /etc/hysteria/example.com.crt # 这里不要改。
+  key: /etc/hysteria/example.com.key  # 这里不要改。
+auth:
+  type: v2board
+trafficStats:
+  listen: 127.0.0.1:7651
+acl: 
+  inline: 
+    - reject(10.0.0.0/8)
+    - reject(172.16.0.0/12)
+    - reject(192.168.0.0/16)
+    - reject(127.0.0.0/8)
+    - reject(fc00::/7)
