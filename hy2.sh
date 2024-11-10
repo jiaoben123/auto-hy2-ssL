@@ -1,5 +1,10 @@
 #!/bin/bash
 
+# 安装必要的软件并设置 acme.sh
+sudo apt install -y vim curl socat openssl && mkdir -p /root/hysteria && \
+curl https://get.acme.sh | sh -s email=rebecca554owen@gmail.com && \
+~/.acme.sh/acme.sh --set-default-ca --server letsencrypt
+
 # 提示用户输入域名
 read -p "请输入域名: " domain
 
@@ -9,13 +14,13 @@ if [ -z "$domain" ]; then
     exit 1
 fi
 
-# Issue certificate
+# 颁发证书
 ~/.acme.sh/acme.sh --issue -d "$domain" --standalone
 
-# Install key file
+# 安装密钥文件
 ~/.acme.sh/acme.sh --install-cert -d "$domain" --key-file /root/hysteria/example.com.key
 
-# Install full chain file
+# 安装完整链文件
 ~/.acme.sh/acme.sh --install-cert -d "$domain" --fullchain-file /root/hysteria/example.com.crt
 
 echo "证书安装完成。域名: $domain"
